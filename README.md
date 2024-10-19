@@ -17,3 +17,6 @@
 
 ## 07
   팀홈페이지 - FastAPI/flask의 템플릿 기능 활용
+
+## 08
+  팀홈페이지 - csv 데이터를 pandas로 읽어서 렌더링, bootstrap 활용
