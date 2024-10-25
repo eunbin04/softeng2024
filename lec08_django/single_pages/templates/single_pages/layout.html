@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{title}} - 이성용의 홈페이지</title>
+    {% load static %}
+    <link href="{% static 'single_pages/practice.css' %}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{% static 'single_pages/add_two_numbers.js' %}"></script>
+    <script type="text/javascript" src="{% static 'single_pages/what_time_is_it.js' %}"></script>
+</head>
+
+<body>
+    <nav>
+         <a href="{% url 'single_pages:landing_page' %}">Home</a>
+        <a href="{% url 'single_pages:blog_list' %}">Blog</a>
+        <a href="{% url 'single_pages:about_me' %}">About Me</a>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+
+</html>
