@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ post.title }} - Blog</title>
+    {% load static %}
+    <link href="{% static 'single_pages/design.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav>
   <a href="/blog/">Blog</a>
 </nav>
-<h1>{{ post.title }}</h1>
+<br>
+<h2><strong>{{ post.title }}</strong></h2>
+<hr/>
 <h4>{{ post.created_at }}</h4>
 <p>{{ post.content }}</p>
-<hr/>
 </body>
 </html>
