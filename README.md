@@ -25,4 +25,7 @@
   팀홈페이지 - Django 시작하기
 
 ## 10 
-  Django로 블로그 및 상세 페이지 만들기
+  Django로 블로그 앱 만들기
+
+## 11
+  Django로 ToDoList 앱 만들기
