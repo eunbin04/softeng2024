@@ -12,12 +12,11 @@
         value="Yes, delete."
         type="submit"
         class="btn btn-primary">
+    <input
+        value="Cancel"
+        type="button"
+        onclick="location.href='{% url 'index' %}';"
+        class="btn btn-primary">
 </form>
-<br>
-<input
-    value="Cancel"
-    type="button"
-    onclick="location.href='{% url 'index' %}';"
-    class="btn btn-primary">
 
 {% endblock %}
