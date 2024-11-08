@@ -10,18 +10,21 @@
     </table>
     <input
         value="Submit"
-        type="submit">
+        type="submit"
+        class="btn btn-primary">
     <input
         value="Cancel"
         type="button"
-        onclick="location.href='{% url 'list' todo_list.id %}'">
+        onclick="location.href='{% url 'list' todo_list.id %}'"
+        class="btn btn-primary">
 
   {% if object %}
         <input
             value="Delete this item"
             type="button"
             onclick="location.href=
-            '{% url 'item-delete' todo_list.id object.id %}'">
+            '{% url 'item-delete' todo_list.id object.id %}'"
+            class="btn btn-primary">
     {% endif %}
 </form>
 

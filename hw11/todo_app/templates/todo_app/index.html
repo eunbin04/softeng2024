@@ -9,7 +9,7 @@
     <li>
         <div
             role="button"
-            onclick="location.href='{% url "list" todolist.id %}'">
+            onclick="location.href='{% url 'list' todolist.id %}'">
             {{ todolist.title }}
         </div>
     </li>
@@ -22,7 +22,8 @@
     <input
         value="Add a new list"
         type="button"
-        onclick="location.href='{% url "list-add" %}'"/>
+        onclick="location.href='{% url 'list-add' %}'"
+        class="btn btn-primary"/>
 </p>
 
 {% endblock %}

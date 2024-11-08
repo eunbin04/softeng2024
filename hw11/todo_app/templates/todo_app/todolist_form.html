@@ -10,11 +10,13 @@
             {{ form.as_p }}
             <input
                 value="Save"
-                type="submit">
+                type="submit"
+                class="btn btn-primary">
             <input
                 value="Cancel"
                 type="button"
-                onclick="location.href='{% url 'index' %}';">
+                onclick="location.href='{% url 'index' %}';"
+                class="btn btn-primary">
         </form>
     </div>
 </div>

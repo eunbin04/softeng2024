@@ -25,4 +25,4 @@ def blog_list(request):
 
     print(post_list)
 
-    return render(request, 'single_pages/blog.html', {'title': 'Blog List', 'posts': post_list})
+    return render(request, 'single_pages/blog_origin.html', {'title': 'Blog List', 'posts': post_list})
