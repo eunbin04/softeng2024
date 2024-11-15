@@ -7,6 +7,8 @@ from .forms import CommentForm
 class PostList(ListView):
     model = Post
     ordering = '-pk'
+    paginate_by = 5
+
 
 class PostDetail(DetailView):
     model = Post
@@ -26,4 +28,4 @@ class PostDetail(DetailView):
             comment.save()
             return redirect(self.object.get_absolute_url())
         return self.get(request, *args, **kwargs)
-# Create your views here.
+
