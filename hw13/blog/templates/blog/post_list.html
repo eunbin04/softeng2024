@@ -61,12 +61,7 @@
 
 
     <!-- Pagination -->
-    <nav aria-label="Pagination">
-        <ul class="pagination justify-content-center my-4">
-            <li class="page-item" aria-current="page"><a class="page-link" href="http://127.0.0.1:8000//blog/?page=1#!">1</a></li>
-            <li class="page-item"><a class="page-link" href="http://127.0.0.1:8000//blog/?page=2#!">2</a></li>
-        </ul>
-    </nav>
+    {% include 'blog/pagination.html' %}
 
 </div>
 {% endblock %}

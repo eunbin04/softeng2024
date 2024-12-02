@@ -47,5 +47,9 @@
     {% empty %}
     <h4>No posts available in this category.</h4>
     {% endfor %}
+
+    <!-- Pagination -->
+    {% include 'blog/pagination.html' %}
+
 </div>
 {% endblock %}

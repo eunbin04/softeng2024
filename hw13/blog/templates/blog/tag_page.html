@@ -53,6 +53,9 @@
     {% empty %}
         <p>No posts found for this tag.</p>
     {% endfor %}
-</div>
 
+    <!-- Pagination -->
+    {% include 'blog/pagination.html' %}
+
+</div>
 {% endblock %}
