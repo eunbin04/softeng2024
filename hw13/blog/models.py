@@ -1,9 +1,23 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 import os
 
 # Create your models here.
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
@@ -32,6 +46,8 @@ class Post(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     category = models.ForeignKey(Category, null=True, blank=True, related_name='posts', on_delete=models.SET_NULL)
+
+    tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
 
     def __str__(self):
         return f"[{self.pk}]{self.title} :: {self.author}"

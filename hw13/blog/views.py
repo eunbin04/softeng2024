@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
-from .models import Post, Category
+from .models import Post, Category, Tag
 from .forms import CommentForm
 
 # Create your views here.
@@ -8,6 +8,23 @@ def category_posts(request, category_id):
     category =Category.objects.get(id=category_id)
     posts = Post.objects.filter(category=category)
     return render(request, 'blog/category_posts.html', {'category': category, 'posts':posts, 'categories': Category.objects.all()})
+
+def tag_page(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    post_list = tag.posts.all()
+    post_count = tag.posts.count()
+
+    return render(
+        request,
+        'blog/tag_page.html',
+        {
+            'tag': tag,
+            'post_list': post_list,
+            'post_count': post_count,
+            'categories': Category.objects.all(),
+            'no_category_post_count': Post.objects.filter(category=None).count(),
+        }
+    )
 
 class PostList(ListView):
     model = Post
