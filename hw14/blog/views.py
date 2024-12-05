@@ -6,8 +6,15 @@ from django.core.exceptions import PermissionDenied
 from django.utils.text import slugify
 from .models import Post, Category, Tag
 from .forms import CommentForm
+import re
 
 # Create your views here.
+def process_tags(tags_str):
+    if not tags_str:
+        return []
+    tags_list = re.split(r'[;,]', tags_str
+    return [tag.strip() for tag in tags_list if tag.strip()]
+
 def category_posts(request, category_id):
     category =Category.objects.get(id=category_id)
     posts = Post.objects.filter(category=category).order_by('-created_at')
@@ -70,19 +77,13 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         self.object.tags.clear()
 
         tags_str = self.request.POST.get('tags_str')
-        if tags_str:
-            tags_str = tags_str.strip()
-
-            tags_str = tags_str.replace(',', ';')
-            tags_list = tags_str.split(',')
-
-            for t in tags_list:
-                t = t.strip()
-                tag, is_tag_created = Tag.objects.get_or_create(name=t)
-                if is_tag_created:
-                    tag.slug = slugify(t, allow_unicode=True)
-                    tag.save()
-                self.object.tags.add(tag)
+        tags_list = process_tags(tags_str)
+        for t in tags_list:
+            tag, is_tag_created = Tag.objects.get_or_create(name=t)
+            if is_tag_created:
+                tag.slug = slugify(t, allow_unicode=True)
+                tag.save()
+            self.object.tags.add(tag)
         return response
 
 
@@ -100,19 +101,13 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             response = super(PostCreate, self).form_valid(form)
 
             tags_str = self.request.POST.get('tags_str')
-            if tags_str:
-                tags_str = tags_str.strip()
-
-                tags_str = tags_str.replace(',', ';')
-                tags_list = tags_str.split(',')
-
-                for t in tags_list:
-                    t = t.strip()
-                    tag, is_tag_created = Tag.objects.get_or_create(name=t)
-                    if is_tag_created:
-                        tag.slug = slugify(t, allow_unicode=True)
-                        tag.save()
-                    self.object.tags.add(tag)
+            tags_list = process_tags(tags_str)
+            for t in tags_list:
+                tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                if is_tag_created:
+                    tag.slug = slugify(t, allow_unicode=True)
+                    tag.save()
+                self.object.tags.add(tag)
             return response
 
         else:

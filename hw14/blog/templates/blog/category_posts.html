@@ -16,7 +16,7 @@
 
 {% block main_area %}
 <div class="col-lg-8" style="margin-top: 18px;">
-    {% for post in posts %}
+    {% for post in page_obj %}
     <div class="card mb-4">
         <a href="{{ post.get_absolute_url }}">
             {% if post.head_image %}
