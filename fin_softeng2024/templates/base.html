@@ -16,7 +16,13 @@
     <!-- Vendor CSS Files -->
     <link href="{% static 'blog/bootstrap/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'blog/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" media="screen">
-    <link href="{% static 'blog/aos/aos.css' %}" rel="stylesheet" media="screen">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- AOS JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<!--    <link href="{% static 'blog/aos/aos.css' %}" rel="stylesheet" media="screen">   -->
+
     <link href="{% static 'blog/swiper/swiper-bundle.min.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'blog/glightbox/css/glightbox.min.css' %}" rel="stylesheet" media="screen">
 
@@ -33,7 +39,7 @@
         </a>
         <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a href="#">Services</a></li>
               <li class="dropdown"><a href="#"><span>Source</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
@@ -42,7 +48,7 @@
                 </ul>
               </li>
               <li><a href="{% url 'blog:blog' %}">Blog</a></li>
-              <li><a href="">Warning</a></li>
+              <li><a href="#">Warning</a></li>
               <li><a href="http://127.0.0.1:8000/admin/">Contact</a></li>
 
 
