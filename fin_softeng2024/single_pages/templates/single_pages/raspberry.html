@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block main_area %}
+
+{% load static %}
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Main JS File -->
+<script src="{% static 'single_pages/js/main.js' %}"></script>
+
 <!-- Page Title -->
 <div class="page-title light-background">
   <div class="container">
@@ -20,10 +28,10 @@
   <div class="d-flex align-items-center justify-content-between">
     <!-- Filters -->
     <ul class="portfolio-filters d-flex" style="flex-wrap: wrap; gap: 10px; margin-left: 500px; margin-top: 10px;">
-      <li class="filter-active">All</li>
-      <li class="filter-app">App</li>
-      <li class="filter-product">Product</li>
-      <li class="filter-branding">Branding</li>
+      <li><a href="{% url 'single_pages:raspberry' %}" class="filter-active">All</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=app" class="filter-app">App</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=product" class="filter-product">Product</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=branding" class="filter-branding">Branding</a></li>
     </ul>
 
     <!-- Search Form -->
@@ -34,9 +42,9 @@
   </div>
 
   <!-- Row for portfolio items -->
-  <div class="row gy-4">
+  <div class="row gy-4" style="margin-bottom: 300px">
     {% for item in portfolios %}
-      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ item.category }}">
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ item.category }}" data-aos="fade-up" data-aos-delay="100">
         {% if item.image %}
           <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}" style="width: 600px; height: 350px;"><br><br>
         {% else %}
@@ -52,16 +60,5 @@
     {% endfor %}
   </div>
 </div>
-
-
-{% load static %}
-<link href="{% static 'blog/css/main.css' %}" rel="stylesheet">
-
-<script src="{% static 'blog/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'blog/vendor/aos/aos.js' %}"></script>
-<script src="{% static 'blog/vendor/swiper/swiper-bundle.min.js' %}"></script>
-<script src="{% static 'blog/vendor/glightbox/js/glightbox.min.js' %}"></script>
-<script src="{% static 'blog/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-<script src="{% static 'blog/js/main.js' %}"></script>
 
 {% endblock %}
