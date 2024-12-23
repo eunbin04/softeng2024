@@ -12,12 +12,12 @@
 <!-- Page Title -->
 <div class="page-title light-background">
   <div class="container">
-    <h1>Raspberry Pi 5</h1>
+    <h1>Raspberry</h1>
     <nav class="breadcrumbs">
       <ol>
         <li><a href="/">Home</a></li>
         <li>Source</li>
-        <li class="current">Raspberry</li>
+        <li class="current">Ara</li>
       </ol>
     </nav>
   </div>
@@ -27,13 +27,10 @@
 <div class="portfolio container" style="margin-top: 15px;">
   <div class="d-flex align-items-center justify-content-between">
     <!-- Filters -->
-    <ul class="portfolio-filters d-flex" style="flex-wrap: wrap; gap: 10px; margin-left: 410px; margin-top: 10px;">
+    <ul class="portfolio-filters d-flex" style="flex-wrap: wrap; gap: 10px; margin-left: 550px; margin-top: 10px;">
       <li><a href="{% url 'single_pages:raspberry' %}" class="filter-active">All</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=sensor" class="filter-sensor">Sensor</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=input" class="filter-input">Input</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=control" class="filter-contol">Control</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=output" class="filter-output">Output</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=etc" class="filter-etc">etc.</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=led" class="filter-led">Led</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=oled" class="filter-oled">Oled</a></li>
     </ul>
 
     <!-- Search Form -->
@@ -54,7 +51,7 @@
         {% endif %}
         <div class="portfolio-info">
           <h4>
-            <a href="{% url 'single_pages:raspberry_details' item.id %}">{{ item.title }}</a>
+            <a href="{% url 'single_pages:ara_details' item.id %}">{{ item.title }}</a>
           </h4>
           <p>{{ item.description }}</p>
         </div>

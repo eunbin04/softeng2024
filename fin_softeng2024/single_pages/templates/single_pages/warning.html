@@ -27,7 +27,7 @@
 <!-- Team Section -->
 <section id="team" class="team section">
 
-  <div class="site-section slider-team-wrap">
+  <div class="site-section slider-team-wrap"  style="margin-bottom: 300px;">
     <div class="container">
 
       <div class="slider-nav d-flex justify-content-end mb-3">
@@ -35,62 +35,67 @@
         <a href="#" class="js-next js-custom-next"><i class="bi bi-arrow-right-short"></i></a>
       </div>
 
-      <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
-        <script type="application/json" class="swiper-config">
-          {
-            "loop": true,
-            "speed": 600,
-            "autoplay": {
+      {% if team_members %}
+        <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
 
-              "delay": 5000
-            },
-            "slidesPerView": "1",
-            "pagination": {
-              "el": ".swiper-pagination",
-              "type": "bullets",
-              "clickable": true
-            },
-            "navigation": {
-              "nextEl": ".js-custom-next",
-              "prevEl": ".js-custom-prev"
-            },
-            "breakpoints": {
-              "640": {
-                "slidesPerView": 2,
-                "spaceBetween": 30
+                "delay": 5000
               },
-              "768": {
-                "slidesPerView": 3,
-                "spaceBetween": 30
+              "slidesPerView": "1",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
               },
-              "1200": {
-                "slidesPerView": 3,
-                "spaceBetween": 30
+              "navigation": {
+                "nextEl": ".js-custom-next",
+                "prevEl": ".js-custom-prev"
+              },
+              "breakpoints": {
+                "640": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 30
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                }
               }
             }
-          }
-        </script>
-        <div class="swiper-wrapper">
-  {% for member in team_members %}
-    <div class="swiper-slide">
-      <div class="team">
-        <div class="pic">
-          <img src="{{ member.image.url }}" alt="{{ member.title }}" class="img-fluid" style="width: 800px; height: 310px; object-fit: cover;">
+          </script>
+          <div class="swiper-wrapper">
+            {% for member in team_members %}
+              <div class="swiper-slide">
+                <div class="team">
+                  <div class="pic">
+                    <img src="{{ member.image.url }}" alt="{{ member.title }}" class="img-fluid" style="width: 800px; height: 310px; object-fit: cover;">
+                  </div>
+                  <h3>{{ member.title }}</h3>
+                  <span class="d-block position">{{ member.hook_text }}</span>
+                  <p>
+                    {{ member.description }}
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
         </div>
-        <h3>{{ member.title }}</h3>
-        <span class="d-block position">{{ member.hook_text }}</span>
-        <p>
-          {{ member.description }}
-        </p>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+      {% else %}
+        <p class="text-center mt-5">게시글이 없습니다.</p>
+      {% endif %}
 
-      </div>
     </div>
     <!-- /.container -->
   </div>
 </section><!-- /Team Section -->
+
 
 {% endblock %}

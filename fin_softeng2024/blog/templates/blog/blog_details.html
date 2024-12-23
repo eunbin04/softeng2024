@@ -36,10 +36,6 @@
                             </ul>
                         </div>
 
-                        <nav>
-                            <a href="{% url 'blog:blog' %}">Blog</a>
-                        </nav>
-
                         <h1>{{ post.title }}</h1>
 
                         {% if post.hook_text %}
@@ -47,7 +43,8 @@
                         {% endif %}
                         <p class="card-text">{{ post.content|truncatewords:45 }}</p>
 
-                        <hr/>
+
+                        </article>
 
                         <!-- Comments Form -->
                         <div class="card my-4">
@@ -78,8 +75,6 @@
                         {% empty %}
                         <p>No comments yet. Be the first to comment!</p>
                         {% endfor %}
-
-                    </article>
                 </div>
                 </section>
             </div>

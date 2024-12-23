@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.views.generic import DetailView
-from .models import Portfolio, TeamMember
+from .models import Raspberry, Warning, Ara
 from .forms import EmailForm
 
 
@@ -17,35 +17,59 @@ def landing(request):
 def raspberry(request):
     query = request.GET.get('q')
     category = request.GET.get('category')
-    portfolios = Portfolio.objects.all().order_by('-created_at')
+    raspberry = Raspberry.objects.all().order_by('-created_at')
 
     if query:
-        portfolios = portfolios.filter(title__icontains=query)
+        raspberry = raspberry.filter(title__icontains=query)
 
     if category:
-        portfolios = portfolios.filter(category=category)
+        raspberry = raspberry.filter(category=category)
 
-    categories = Portfolio.objects.values_list('category', flat=True).distinct()  # 중복 없는 카테고리 목록
+    categories = Raspberry.objects.values_list('category', flat=True).distinct()
 
     return render(request, 'single_pages/raspberry.html', {
-        'portfolios': portfolios,
+        'raspberry': raspberry,
         'categories': categories,
     })
 
 class RaspberryDetailView(DetailView):
-    model = Portfolio
+    model = Raspberry
     template_name = 'single_pages/raspberry_details.html'
     context_object_name = 'post'
 
 
+def ara(request):
+    query = request.GET.get('q')
+    category = request.GET.get('category')
+    ara = Raspberry.objects.all().order_by('-created_at')
+
+    if query:
+        ara = ara.filter(title__icontains=query)
+
+    if category:
+        ara = ara.filter(category=category)
+
+    categories = Raspberry.objects.values_list('category', flat=True).distinct()
+
+    return render(request, 'single_pages/ara.html', {
+        'ara': ara,
+        'categories': categories,
+    })
+
+class AraDetailView(DetailView):
+    model = Ara
+    template_name = 'single_pages/ara_details.html'
+    context_object_name = 'post'
+
+
 def warning(request):
-    team_members = TeamMember.objects.all()
-    return render(request, 'single_pages/warning.html', {'team_members': team_members})
+    warning = Warning.objects.all()
+    return render(request, 'single_pages/warning.html', {'warning': warning})
 
 
 def send_email_view(request):
     form = EmailForm()
-    success = None  # 성공 여부를 나타내는 변수
+    success = None
     if request.method == 'POST':
         form = EmailForm(request.POST)
         if form.is_valid():
@@ -60,8 +84,8 @@ def send_email_view(request):
                     from_email=sender_email,
                     recipient_list=[settings.EMAIL_HOST_USER],
                 )
-                success = True  # 성공
+                success = True
             except Exception:
-                success = False  # 실패
+                success = False
 
     return render(request, 'single_pages/send_email.html', {'form': form, 'success': success})
