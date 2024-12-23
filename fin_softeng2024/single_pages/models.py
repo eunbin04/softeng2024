@@ -11,6 +11,7 @@ class Raspberry(models.Model):
         ('etc', 'etc'),
     ]
     title = models.CharField(max_length=200)
+    hook_text = models.CharField(max_length=100, blank=True)
     description = models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     image = models.ImageField(upload_to='raspberry/', blank=True, null=True)
@@ -33,6 +34,7 @@ class Ara(models.Model):
         ('oled', 'Oled'),
     ]
     title = models.CharField(max_length=200)
+    hook_text = models.CharField(max_length=100, blank=True)
     description = models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     image = models.ImageField(upload_to='ara/', blank=True, null=True)

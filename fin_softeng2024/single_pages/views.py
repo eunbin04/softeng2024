@@ -4,6 +4,7 @@ from django.conf import settings
 from django.views.generic import DetailView
 from .models import Raspberry, Warning, Ara
 from .forms import EmailForm
+from django.db.models import Q
 
 
 # Create your views here.
@@ -20,7 +21,10 @@ def raspberry(request):
     raspberry = Raspberry.objects.all().order_by('-created_at')
 
     if query:
-        raspberry = raspberry.filter(title__icontains=query)
+        raspberry = raspberry.filter(
+            Q(title__icontains=query) |
+            Q(hook_text__icontains=query)
+        )
 
     if category:
         raspberry = raspberry.filter(category=category)
@@ -41,15 +45,18 @@ class RaspberryDetailView(DetailView):
 def ara(request):
     query = request.GET.get('q')
     category = request.GET.get('category')
-    ara = Raspberry.objects.all().order_by('-created_at')
+    ara = Ara.objects.all().order_by('-created_at')
 
     if query:
-        ara = ara.filter(title__icontains=query)
+        ara = ara.filter(
+            Q(title__icontains=query) |
+            Q(hook_text__icontains=query)
+        )
 
     if category:
         ara = ara.filter(category=category)
 
-    categories = Raspberry.objects.values_list('category', flat=True).distinct()
+    categories = Ara.objects.values_list('category', flat=True).distinct()
 
     return render(request, 'single_pages/ara.html', {
         'ara': ara,

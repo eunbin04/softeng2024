@@ -24,7 +24,7 @@
 </div>
 
 
-<!-- Team Section -->
+<!-- Main Section -->
 <section id="team" class="team section">
 
   <div class="site-section slider-team-wrap"  style="margin-bottom: 300px;">
@@ -35,7 +35,7 @@
         <a href="#" class="js-next js-custom-next"><i class="bi bi-arrow-right-short"></i></a>
       </div>
 
-      {% if team_members %}
+      {% if warning %}
         <div class="swiper init-swiper" data-aos="fade-up" data-aos-delay="100">
           <script type="application/json" class="swiper-config">
             {
@@ -72,7 +72,7 @@
             }
           </script>
           <div class="swiper-wrapper">
-            {% for member in team_members %}
+            {% for member in warning %}
               <div class="swiper-slide">
                 <div class="team">
                   <div class="pic">

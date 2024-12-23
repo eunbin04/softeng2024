@@ -23,17 +23,17 @@
   </div>
 </div>
 
-<!-- Portfolio Section -->
+<!-- Main Section -->
 <div class="portfolio container" style="margin-top: 15px;">
   <div class="d-flex align-items-center justify-content-between">
     <!-- Filters -->
-    <ul class="portfolio-filters d-flex" style="flex-wrap: wrap; gap: 10px; margin-left: 410px; margin-top: 10px;">
-      <li><a href="{% url 'single_pages:raspberry' %}" class="filter-active">All</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=sensor" class="filter-sensor">Sensor</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=input" class="filter-input">Input</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=control" class="filter-contol">Control</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=output" class="filter-output">Output</a></li>
-      <li><a href="{% url 'single_pages:raspberry' %}?category=etc" class="filter-etc">etc.</a></li>
+    <ul class="portfolio-filters d-flex" style="flex-wrap: wrap; gap: 10px; margin-left: 300px; margin-top: 10px;">
+      <li><a href="{% url 'single_pages:raspberry' %}" class="filter-active, btn btn-get-started">All</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=sensor" class="filter-sensor, btn btn-get-started">Sensor</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=input" class="filter-input, btn btn-get-started">Input</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=control" class="filter-control, btn btn-get-started">Control</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=output" class="filter-output, btn btn-get-started">Output</a></li>
+      <li><a href="{% url 'single_pages:raspberry' %}?category=etc" class="filter-etc, btn btn-get-started">etc.</a></li>
     </ul>
 
     <!-- Search Form -->
@@ -43,9 +43,9 @@
     </form>
   </div>
 
-  <!-- Row for portfolio items -->
+  <!-- Row for items -->
   <div class="row gy-4" style="margin-bottom: 300px">
-    {% for item in portfolios %}
+    {% for item in raspberry %}
       <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ item.category }}" data-aos="fade-up" data-aos-delay="100">
         {% if item.image %}
           <img src="{{ item.image.url }}" class="img-fluid" alt="{{ item.title }}" style="width: 600px; height: 350px;"><br><br>
@@ -56,7 +56,9 @@
           <h4>
             <a href="{% url 'single_pages:raspberry_details' item.id %}">{{ item.title }}</a>
           </h4>
-          <p>{{ item.description }}</p>
+          {% if item.hook_text %}
+            <h5 class="text-muted">{{ item.hook_text }}</h5>
+          {% endif %}
         </div>
       </div>
     {% empty %}
