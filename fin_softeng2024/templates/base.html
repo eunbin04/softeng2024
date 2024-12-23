@@ -18,7 +18,7 @@
     <link href="{% static 'single_pages/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'single_pages/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'single_pages/aos/aos.css' %}" rel="stylesheet" media="screen">
-    <link href="{% static 'singe_pages/swiper/swiper-bundle.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'single_pages/swiper/swiper-bundle.min.css' %}" rel="stylesheet" media="screen">
     <link href="{% static 'single_pages/glightbox/css/glightbox.min.css' %}" rel="stylesheet" media="screen">
 
     <!-- Main CSS File -->
@@ -50,7 +50,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
               <li><a href="/">Home</a></li>
-              <li><a href="#">Services</a></li>
+              <li><a href="{% url 'single_pages:send_email' %}">Services</a></li>
               <li class="dropdown"><a href="#"><span>Source</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="{% url 'single_pages:raspberry' %}">Raspberry Pi 5</a></li>
@@ -58,7 +58,7 @@
                 </ul>
               </li>
               <li><a href="{% url 'blog:blog' %}">Blog</a></li>
-              <li><a href="#">Warning</a></li>
+              <li><a href="{% url 'single_pages:warning' %}">Warning</a></li>
               <li><a href="http://127.0.0.1:8000/admin/"><i class="fa fa-lock"></i>&nbsp Login</a></li>
 
 
